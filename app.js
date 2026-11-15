@@ -5,6 +5,8 @@
   const interestedEl = document.getElementById('interested-list');
   const watchEl = document.getElementById('watchlist');
   const searchEl = document.getElementById('search');
+  const removedSection = document.getElementById('removed-section');
+  const removedEl = document.getElementById('removed-list');
   let filter = 'all';
 
   const KEY = 'live-shows-chicago-interested-v1';
@@ -18,8 +20,17 @@
   let interested = loadInterested();
   function saveInterested(){ localStorage.setItem(KEY, JSON.stringify([...interested])); }
 
-  document.getElementById('show-count').textContent = data.shows.length + ' shows';
-  document.getElementById('artist-count').textContent = data.tracked_artists.length + ' tracked artists';
+  const HIDE_KEY = 'live-shows-chicago-hidden-artists-v1';
+  function loadHidden(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(HIDE_KEY) || 'null');
+      if (Array.isArray(saved)) return new Set(saved);
+    }catch(e){}
+    return new Set();
+  }
+  let hidden = loadHidden();
+  function saveHidden(){ localStorage.setItem(HIDE_KEY, JSON.stringify([...hidden])); }
+
   document.getElementById('generated').textContent = data.generated;
 
   function fmtDate(iso){
@@ -39,8 +50,13 @@
   function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
   function render(){
+    const visibleShows = data.shows.filter(s=>!hidden.has(s.artist));
+    const visibleArtists = data.tracked_artists.filter(a=>!hidden.has(a.name));
+    document.getElementById('show-count').textContent = visibleShows.length + ' shows';
+    document.getElementById('artist-count').textContent = visibleArtists.length + ' tracked artists';
+
     const q = (searchEl.value || '').trim().toLowerCase();
-    const filtered = data.shows.filter(s=>{
+    const filtered = visibleShows.filter(s=>{
       if(filter==='interested' && !interested.has(s.id)) return false;
       if(filter!=='all' && filter!=='interested' && s.category!==filter) return false;
       if(q && !(s.artist+' '+s.title+' '+s.venue+' '+s.city).toLowerCase().includes(q)) return false;
@@ -63,24 +79,38 @@
             ${s.note?`<p class="note">${esc(s.note)}</p>`:''}
             <p class="source">Source: ${esc(s.source)}${s.ticket_url?` &middot; <a href="${esc(s.ticket_url)}" target="_blank" rel="noopener">Tickets / details</a>`:''}</p>
             <label class="interested-toggle"><input type="checkbox" data-interested="${esc(s.id)}" ${interested.has(s.id)?'checked':''}> Interested?</label>
+            <div><button type="button" class="not-interested-btn" data-hide-artist="${esc(s.artist)}">Not interested in ${esc(s.artist)}</button></div>
           </div>
         </article>`;}).join('')}
       </div></div>`).join('');
 
-    const mine = data.shows.filter(s=>interested.has(s.id)).sort((a,b)=>a.date.localeCompare(b.date));
+    const mine = visibleShows.filter(s=>interested.has(s.id)).sort((a,b)=>a.date.localeCompare(b.date));
     interestedEl.innerHTML = mine.length ? mine.map(s=>{
       const d=fmtDate(s.date);
       return `<div class="interested-item"><strong>${esc(d.long)} &middot; ${esc(fmtTime(s.time))}</strong> — ${esc(s.artist)} at ${esc(s.venue)}, ${esc(s.city)}</div>`;
     }).join('') : '<p class="hint">Nothing marked yet.</p>';
 
+    watchEl.innerHTML = visibleArtists.map(a=>`
+    <div class="watch-item"><strong>${esc(a.name)}${a.suggested?'<span class="badge">Suggested</span>':''}</strong>
+    <span>${esc(a.kind)}${a.next?` &middot; Next: ${esc(fmtDate(a.next).long)}`:''}${a.note?`<br>${esc(a.note)}`:''}</span></div>`).join('');
+
+    if (removedSection && removedEl){
+      const removedNames = [...hidden].sort((a,b)=>a.localeCompare(b));
+      removedSection.hidden = removedNames.length === 0;
+      removedEl.innerHTML = removedNames.map(name=>`
+      <div class="removed-item"><span>${esc(name)}</span><button type="button" class="restore-btn" data-restore-artist="${esc(name)}">Restore</button></div>`).join('');
+      removedEl.querySelectorAll('[data-restore-artist]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{ hidden.delete(btn.dataset.restoreArtist); saveHidden(); render(); });
+      });
+    }
+
     showsEl.querySelectorAll('[data-interested]').forEach(cb=>{
       cb.addEventListener('change', ()=>{ cb.checked ? interested.add(cb.dataset.interested) : interested.delete(cb.dataset.interested); saveInterested(); render(); });
     });
+    showsEl.querySelectorAll('[data-hide-artist]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ hidden.add(btn.dataset.hideArtist); saveHidden(); render(); });
+    });
   }
-
-  watchEl.innerHTML = data.tracked_artists.map(a=>`
-    <div class="watch-item"><strong>${esc(a.name)}${a.suggested?'<span class="badge">Suggested</span>':''}</strong>
-    <span>${esc(a.kind)}${a.next?` &middot; Next: ${esc(fmtDate(a.next).long)}`:''}${a.note?`<br>${esc(a.note)}`:''}</span></div>`).join('');
 
   document.querySelectorAll('.chip').forEach(btn=>{
     btn.addEventListener('click', ()=>{

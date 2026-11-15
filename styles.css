@@ -44,3 +44,8 @@ h2{font-size:1.25rem;margin:30px 0 8px}
 .site-footer{border-top:1px solid var(--line);margin-top:36px;padding:18px 0 30px;color:var(--muted);font-size:.9rem}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:560px){h1{font-size:1.75rem}.card{padding:13px}}
+.not-interested-btn{appearance:none;background:none;border:none;color:var(--muted);font:inherit;font-size:.88rem;padding:4px 0;margin-top:2px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.not-interested-btn:hover{color:var(--text)}
+.removed-list{display:grid;gap:8px}
+.removed-item{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--muted)}
+.restore-btn{appearance:none;border:1px solid var(--line);background:var(--panel2);color:var(--accent);padding:6px 12px;border-radius:999px;cursor:pointer;font:inherit;font-size:.88rem;font-weight:650}

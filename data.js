@@ -1,11 +1,10 @@
-// Live Shows in Chicago — data snapshot exported from the Muse Space on 2026-11-14
+// Live Shows in Chicago — data snapshot exported from the Muse Space on 2026-11-15
 // To update: replace this file (or edit the arrays) and push to GitHub. No build step needed.
 // NOTE: Personal calendar-conflict details from the Space were intentionally left out of this public version.
 window.LIVE_SHOWS_DATA = {
-  "generated": "2026-11-14",
+  "generated": "2026-11-15",
   "window": { "start": "2026-11-14", "end": "2027-07-14" },
   "shows": [
-    {"id":"tm:vv17jZbyGknZIKqU","artist":"Nikki Glaser","title":"Nikki Glaser: The Stunning Tour","category":"comedian","date":"2026-11-14","time":"19:00","venue":"The Chicago Theatre","city":"Chicago","note":"Tonight — Jason is going","suggested":false,"interested":true,"ticket_url":"https://www.ticketmaster.com/nikki-glaser-tickets/artist/1536543?page=7","source":"Ticketmaster"},
     {"id":"tm:vv17jZbyGknZtSqB","artist":"Nikki Glaser","title":"Nikki Glaser: The Stunning Tour","category":"comedian","date":"2026-11-15","time":"19:00","venue":"The Chicago Theatre","city":"Chicago","note":"Second night added","suggested":false,"interested":false,"ticket_url":"https://www.ticketmaster.com/nikki-glaser-tickets/artist/1536543?page=7","source":"Ticketmaster"},
     {"id":"web:david-cross-2026-11-15","artist":"David Cross","title":"David Cross","category":"comedian","date":"2026-11-15","time":"19:30","venue":"George Van Dusen Theatre at North Shore Center","city":"Skokie","note":null,"suggested":true,"interested":false,"ticket_url":"https://www.ticketmaster.com/david-cross-tickets/artist/1351982","source":"Consequence Live / Ticketmaster"},
     {"id":"web:deadfest-heynonny-2026-11-19","artist":"Deadfest Band","title":"Deadfest Band","category":"local","date":"2026-11-19","time":"19:30","venue":"Hey Nonny","city":"Arlington Heights","note":"Larry Brown's Grateful Dead tribute, 10 S Vail Ave","suggested":false,"interested":false,"ticket_url":"https://www.vividseats.com/deadfest-band-tickets-arlington-heights-hey-nonny-11-19-2026/production/7526552","source":"Hey Nonny / Vivid Seats"},
@@ -41,7 +40,7 @@ window.LIVE_SHOWS_DATA = {
     {"id":"web:harry-styles-2027-06-05","artist":"Harry Styles","title":"Harry Styles: Together, Together","category":"music","date":"2027-06-05","time":"19:45","venue":"Soldier Field","city":"Chicago","note":"Night 5 of 5-night Soldier Field run","suggested":true,"interested":false,"ticket_url":"https://www.ticketmaster.com/harry-styles-tickets/artist/2366444?venueId=32827","source":"Ticketmaster"}
   ],
   "tracked_artists": [
-    {"name":"Nikki Glaser","kind":"comedian","suggested":false,"note":"Seeing her at The Chicago Theatre","next":"2026-11-14"},
+    {"name":"Nikki Glaser","kind":"comedian","suggested":false,"note":"Seeing her at The Chicago Theatre","next":"2026-11-15"},
     {"name":"Jerry Seinfeld","kind":"comedian","suggested":false,"note":"Recently seen — a favorite","next":null},
     {"name":"Louis C.K.","kind":"comedian","suggested":false,"note":"Recently seen — a favorite","next":null},
     {"name":"Jim Gaffigan","kind":"comedian","suggested":false,"note":"Recently seen — a favorite","next":null},
