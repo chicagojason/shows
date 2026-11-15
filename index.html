@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Shows in Chicago</title>
+  <meta name="description" content="Comedians, concerts and local Chicago shows worth watching — tracked for the next 8 months.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">Chicago &middot; Next 8 months</p>
+      <h1>Live Shows in Chicago</h1>
+      <p class="lede">Comedians, concerts and local favorites, checked every four days in the Muse Space. This is a static snapshot for GitHub Pages — same shows, no login needed.</p>
+      <p class="meta"><span id="show-count"></span> &middot; <span id="artist-count"></span> &middot; Snapshot <span id="generated"></span></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="controls" aria-label="Filters">
+      <div class="chips" role="group" aria-label="Category">
+        <button class="chip is-active" data-filter="all">All</button>
+        <button class="chip" data-filter="comedian">Comedians</button>
+        <button class="chip" data-filter="music">Music</button>
+        <button class="chip" data-filter="local">Local</button>
+        <button class="chip" data-filter="interested">Interested only</button>
+      </div>
+      <label class="search">
+        <span class="sr-only">Search artist, venue or title</span>
+        <input id="search" type="search" placeholder="Search artist, venue, title…">
+      </label>
+    </section>
+
+    <section>
+      <h2>Your interested shows</h2>
+      <p class="hint">Tick “Interested?” on any card. On GitHub Pages your picks save only in this browser (localStorage) — they don’t sync back to Muse.</p>
+      <div id="interested-list" class="interested-list"></div>
+    </section>
+
+    <section>
+      <h2>All shows</h2>
+      <div id="shows"></div>
+      <p id="empty" class="empty" hidden>No shows match that filter.</p>
+    </section>
+
+    <section>
+      <h2>Watch list</h2>
+      <p class="hint">Artists being tracked, even when they have no Chicago date yet. “Suggested” acts are in the same lane as the favorites.</p>
+      <div id="watchlist" class="watchlist"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Static export of the “Live Shows in Chicago” Muse Space, 2026-11-14. Ticket links go to the original seller/source. Personal calendar-conflict notes from the Space were left out of this public version.</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

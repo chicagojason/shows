@@ -1,0 +1,46 @@
+:root{
+  --bg:#0f1115; --panel:#171a21; --panel2:#1e222c; --text:#f2f3f5; --muted:#a7adbb;
+  --accent:#e8b33d; --accent2:#5ec4b6; --line:#2a2f3a; --radius:16px;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.45}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px}
+.site-header{padding:36px 0 22px;background:linear-gradient(180deg,#1b1f2a,#0f1115);border-bottom:1px solid var(--line)}
+.eyebrow{letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-size:.78rem;font-weight:700;margin:0 0 8px}
+h1{font-size:2.1rem;line-height:1.05;margin:0 0 10px}
+h2{font-size:1.25rem;margin:30px 0 8px}
+.lede{color:var(--muted);max-width:65ch;margin:0}
+.meta{color:var(--muted);font-size:.92rem;margin-top:12px}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:22px 0 4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:8px 13px;border-radius:999px;cursor:pointer;font:inherit;font-size:.92rem}
+.chip.is-active{background:var(--accent);color:#171106;border-color:var(--accent);font-weight:700}
+.search input{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:9px 14px;min-width:min(320px,86vw);font:inherit}
+.hint,.empty{color:var(--muted)}
+.month{margin-top:22px}
+.month h3{color:var(--accent2);font-size:1rem;letter-spacing:.04em;text-transform:uppercase;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;gap:14px}
+.date-badge{flex:0 0 58px;text-align:center;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:9px 4px;height:fit-content}
+.date-badge .dow{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.date-badge .day{font-size:1.45rem;font-weight:800;line-height:1.1}
+.date-badge .mon{font-size:.78rem;color:var(--muted)}
+.card h4{margin:0 0 4px;font-size:1.05rem}
+.card .title{color:var(--muted);font-size:.93rem;margin:0 0 8px}
+.card .venue,.card .note,.card .source{font-size:.92rem;margin:3px 0}
+.card .note{color:#d8c58a}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:#2b3446;color:#cfe0ff;margin-left:6px;vertical-align:middle}
+.badge.local{background:#23443f;color:#bff0e6}
+.card a{color:var(--accent);font-weight:650;text-decoration:none}
+.card a:hover{text-decoration:underline}
+.interested-toggle{display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:650;cursor:pointer}
+.interested-list{display:grid;gap:8px}
+.interested-item{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.watch-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.watch-item strong{display:block}
+.watch-item span{color:var(--muted);font-size:.9rem}
+.site-footer{border-top:1px solid var(--line);margin-top:36px;padding:18px 0 30px;color:var(--muted);font-size:.9rem}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:560px){h1{font-size:1.75rem}.card{padding:13px}}
