@@ -16,7 +16,16 @@
   let filter = 'all';
 
   // "Today" in Chicago, so past shows and ended play runs fall off automatically.
-  const today = new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  // Build YYYY-MM-DD from formatToParts explicitly: Intl format() output order
+  // varies by browser/locale (iOS Safari's en-CA is NOT ISO), which corrupts
+  // string comparisons against the ISO dates in data.js.
+  function chicagoToday(){
+    const parts = new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    const byType = {};
+    parts.forEach(p=>{ byType[p.type] = p.value; });
+    return byType.year + '-' + byType.month + '-' + byType.day;
+  }
+  const today = chicagoToday();
   const allShows = (data.shows || []).filter(s=>s.date >= today);
   const allPlays = (data.plays || []).filter(p=>p.run_end >= today);
 
