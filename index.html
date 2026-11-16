@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Live Shows in Chicago</title>
-  <meta name="description" content="Comedians, concerts and local Chicago shows worth watching — tracked for the next 8 months.">
+  <meta name="description" content="Comedians, concerts, local Chicago shows and stage plays worth watching — tracked for the next 8 months.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,10 +12,26 @@
     <div class="wrap">
       <p class="eyebrow">Chicago &middot; Next 8 months</p>
       <h1>Live Shows in Chicago</h1>
-      <p class="lede">Comedians, concerts and local favorites, checked every four days in the Muse Space. This is a static snapshot for GitHub Pages — same shows, no login needed.</p>
-      <p class="meta"><span id="show-count"></span> &middot; <span id="artist-count"></span> &middot; Snapshot <span id="generated"></span></p>
+      <p class="lede">Comedians, concerts, local favorites and stage plays, checked every four days in the Muse Space. This is a static snapshot for GitHub Pages — same shows, no login needed.</p>
+      <p class="meta"><span id="show-count"></span> &middot; <span id="play-count"></span> &middot; <span id="artist-count"></span> &middot; Snapshot <span id="generated"></span></p>
     </div>
   </header>
+
+  <nav class="cat-nav" aria-label="Show or hide categories">
+    <div class="wrap cat-nav-inner">
+      <div class="toggles" role="group" aria-label="Categories">
+        <button type="button" class="toggle is-on" data-toggle="comics" aria-pressed="true">Comics <span class="count" id="count-comics"></span></button>
+        <button type="button" class="toggle is-on" data-toggle="concerts" aria-pressed="true">Concerts <span class="count" id="count-concerts"></span></button>
+        <button type="button" class="toggle is-on" data-toggle="plays" aria-pressed="true">Plays <span class="count" id="count-plays"></span></button>
+      </div>
+      <div class="jumps">
+        <a href="#interested-section">Interested</a>
+        <a href="#shows-section" id="jump-shows">Shows</a>
+        <a href="#plays-section" id="jump-plays">Plays</a>
+        <a href="#watchlist-section">Watch list</a>
+      </div>
+    </div>
+  </nav>
 
   <main class="wrap">
     <section class="controls" aria-label="Filters">
@@ -27,24 +43,35 @@
         <button class="chip" data-filter="interested">Interested only</button>
       </div>
       <label class="search">
-        <span class="sr-only">Search artist, venue or title</span>
-        <input id="search" type="search" placeholder="Search artist, venue, title…">
+        <span class="sr-only">Search artist, venue, title or play</span>
+        <input id="search" type="search" placeholder="Search artist, venue, title, play…">
       </label>
     </section>
 
-    <section>
-      <h2>Your interested shows</h2>
+    <section id="interested-section">
+      <h2>Your interested shows &amp; plays</h2>
       <p class="hint">Tick “Interested?” on any card. On GitHub Pages your picks save only in this browser (localStorage) — they don’t sync back to Muse.</p>
       <div id="interested-list" class="interested-list"></div>
     </section>
 
-    <section>
+    <section id="shows-section">
       <h2>All shows</h2>
       <div id="shows"></div>
       <p id="empty" class="empty" hidden>No shows match that filter.</p>
     </section>
 
-    <section>
+    <section id="plays-section">
+      <h2>On stage in Chicago — plays &amp; musicals</h2>
+      <p class="hint">One card per production for its full run — Goodman, Steppenwolf and Broadway In Chicago (Nederlander, CIBC, Cadillac Palace, Broadway Playhouse, The Auditorium).</p>
+      <h3 class="subhead">Now playing</h3>
+      <div id="plays-now" class="grid"></div>
+      <p id="plays-now-empty" class="empty" hidden>Nothing currently running matches.</p>
+      <h3 class="subhead">Coming soon</h3>
+      <div id="plays-soon" class="grid"></div>
+      <p id="plays-soon-empty" class="empty" hidden>No upcoming productions match.</p>
+    </section>
+
+    <section id="watchlist-section">
       <h2>Watch list</h2>
       <p class="hint">Artists being tracked, even when they have no Chicago date yet. “Suggested” acts are in the same lane as the favorites.</p>
       <div id="watchlist" class="watchlist"></div>
@@ -59,7 +86,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>Static export of the “Live Shows in Chicago” Muse Space, 2026-11-15. Ticket links go to the original seller/source. Personal calendar-conflict notes from the Space were left out of this public version.</p>
+      <p>Static export of the “Live Shows in Chicago” Muse Space, 2026-11-15. Ticket and listing links go to the original seller/source. Personal calendar-conflict notes from the Space were left out of this public version.</p>
     </div>
   </footer>
 
